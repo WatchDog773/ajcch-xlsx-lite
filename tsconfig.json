@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "module": "NodeNext",
+    "declaration": true,
+    "outDir": "dist",
+    "strict": true,
+    "noImplicitAny": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "lib": ["ES2020", "DOM"],
+    "target": "ES2022",
+    "moduleResolution": "nodenext",
+    "rootDir": "src"
+  },
+  "include": ["src"]
+}

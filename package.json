@@ -1,0 +1,38 @@
+{
+  "name": "ajcch-xlsx-lite",
+  "version": "0.2.1",
+  "description": "Solo lee excels - Como los perros de SheetJS me quitaron la libreria hice la mia con juegos de azar y mujerzuelas >:v",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build1": "tsc -p tsconfig.json",
+    "preinstall": "node ./scripts/postinstall.js",
+    "build": "tsc -p tsconfig.json && npm run obfuscate",
+    "obfuscate": "javascript-obfuscator dist --output dist"
+  },
+  "keywords": [
+    "xlsx",
+    "excel",
+    "browser",
+    "typescript",
+    "no-deps",
+    "read-only"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist",
+    "scripts"
+  ],
+  "author": "Alessandro J. Cardona Chavarria",
+  "license": "MIT",
+  "type": "module",
+  "devDependencies": {
+    "@types/node": "^24.10.1",
+    "javascript-obfuscator": "^4.1.1",
+    "typescript": "^5.6.0",
+    "undici-types": "^7.16.0"
+  }
+}
