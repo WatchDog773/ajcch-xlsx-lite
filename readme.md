@@ -53,3 +53,53 @@ J                                  \`
        Gracias por instalar *ajcch-xlsx-lite* ❤️
        Excel puro, sin SheetJS, sin dependencias.
        Hecho a mano, con odio y determinación. 🔥
+
+# Instrucciones de uso
+
+## Instalacion
+1. Node.js 18+ instalado.
+2. Instala la libreria:
+
+```bash
+npm install ajcch-xlsx-lite
+```
+
+## Uso en Node
+Lee el archivo XLSX con `fs`, conviertelo a ArrayBuffer y pasalo a `readXlsxMatrix`.
+```ts
+import { readFileSync } from "fs";
+import { readXlsxMatrix } from "ajcch-xlsx-lite";
+
+const fileBuffer = readFileSync("./data/prueba.xlsx");
+const arrayBuffer = fileBuffer.buffer.slice(
+  fileBuffer.byteOffset,
+  fileBuffer.byteOffset + fileBuffer.byteLength
+);
+
+const matrix = await readXlsxMatrix(arrayBuffer);
+console.log(matrix);
+```
+
+## Seleccionar hoja especifica
+Pasa un nombre parcial de la hoja; si no la encuentra, devuelve matriz vacia.
+```ts
+const matrix = await readXlsxMatrix(arrayBuffer, {
+  sheetNameContains: "inventario",
+});
+```
+
+## Mapear la matriz a objetos tipados
+Usa la primera fila como encabezados para transformar el resto en objetos.
+```ts
+import { mapMatrixToObjects } from "ajcch-xlsx-lite";
+
+const items = mapMatrixToObjects(matrix, (row) => ({
+  nombre: row.Nombre,
+  cantidad: Number(row.Cantidad ?? 0),
+}));
+```
+
+## Notas
+- Solo lectura: no escribe ni modifica el XLSX.
+- Sin dependencias externas (sin SheetJS).
+- Enfocada en casos simples: sin formulas complejas ni estilos avanzados.
